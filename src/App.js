@@ -1,12 +1,11 @@
-import React from "react";
-import styled from "styled-components";
-
-const Wrapper = styled.div`
-  color: blue;
-`;
-
+import React from 'react';
+import { Header } from './components/Header';
 const App = () => {
-  return <Wrapper>Yo</Wrapper>;
+  return (
+    <div>
+      <Header />
+    </div>
+  );
 };
 
 export default App;
