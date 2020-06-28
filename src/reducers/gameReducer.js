@@ -2,7 +2,7 @@ import { SET_LEVEL } from '../constants';
 import { getImages } from '../utils';
 const initialState = {
   level: 'easy',
-  data: getImages,
+  data: getImages(),
   flipped: [],
   timeUsed: 0,
   playing: false,
