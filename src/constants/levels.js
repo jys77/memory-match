@@ -1,5 +1,5 @@
 export const levels = {
-  easy: 1,
+  easy: 3,
   medium: 2,
-  hard: 3,
+  hard: 1,
 };
