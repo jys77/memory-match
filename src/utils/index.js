@@ -22,3 +22,12 @@ export const getImages = (level = 'easy') => {
     };
   });
 };
+
+export const isMatched = (one, two) => {
+  if (one && two) {
+    if (one.name === two.name && one.id !== two.id) {
+      return true;
+    }
+  }
+  return false;
+};
