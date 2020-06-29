@@ -11,7 +11,7 @@ export const getImages = (level = 'easy') => {
   const dataMap = selectedData.map((item) => {
     return {
       name: item,
-      imagePath: `static/images/${item}.png`,
+      imagePath: `images/${item}.png`,
     };
   });
   return shuffle([...shuffle(dataMap), ...shuffle(dataMap)]).map((item, id) => {

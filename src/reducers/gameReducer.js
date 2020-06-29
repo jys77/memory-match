@@ -3,6 +3,7 @@ import { getImages } from '../utils';
 const initialState = {
   level: 'easy',
   data: getImages(),
+  clicked: [],
   flipped: [],
   timeUsed: 0,
   playing: false,
