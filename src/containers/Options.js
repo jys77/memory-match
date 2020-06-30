@@ -3,13 +3,12 @@ import { useDispatch, useSelector } from 'react-redux';
 import styled from 'styled-components';
 import { mixins } from '../styles';
 import { levels } from '../constants';
-import { setLevel } from '../actions';
+import { setLevel, startGame } from '../actions';
 const OptionsWrapper = styled.div`
   display: flex;
   margin-top: 2rem;
   .option {
     position: relative;
-    margin-right: 2rem;
     select {
       -webkit-appearance: none;
       font-size: 1.2rem;
@@ -30,7 +29,12 @@ const OptionsWrapper = styled.div`
       color: #000;
     }
   }
-  .stat {
+  .start {
+    margin-left: 1rem;
+    margin-right: 1rem;
+  }
+  .stat,
+  .start {
     ${mixins.flexCenter}
     cursor: pointer;
     width: 100px;
@@ -41,17 +45,25 @@ const OptionsWrapper = styled.div`
     box-shadow: none;
     padding: 5px;
     font-size: 1.2rem;
-    line-height: 38px;
+  }
+  .start:disabled {
+    cursor: not-allowed;
   }
 `;
 
 export const Options = () => {
   const [gameLevel, setGameLevel] = useState('easy');
+  const [startClicked, setStartClicked] = useState(false);
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(setLevel(gameLevel));
   }, [gameLevel]);
 
+  const gameStart = () => {
+    if (!startClicked) {
+      dispatch(startGame());
+    }
+  };
   return (
     <OptionsWrapper>
       <div className="option">
@@ -64,7 +76,17 @@ export const Options = () => {
         </select>
         <i className="arrow">&#9660;</i>
       </div>
-      <div className="stat">Statistics</div>
+      <button
+        className="start"
+        onClick={() => {
+          gameStart();
+          setStartClicked(true);
+        }}
+        disabled={startClicked}
+      >
+        Start
+      </button>
+      <button className="stat">Statistics</button>
     </OptionsWrapper>
   );
 };

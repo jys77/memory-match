@@ -25,11 +25,12 @@ const GameWrapper = styled.div`
 `;
 
 export const Game = () => {
-  const { data, level } = useSelector((state) => state.game);
+  const dispatch = useDispatch();
+  const { data, level, playing } = useSelector((state) => state.game);
   return (
     <GameWrapper level={level}>
       {data.map((img) => (
-        <Card key={img.id} level={level} name={img.name} id={img.id} />
+        <Card key={img.id} level={level} name={img.name} id={img.id} playing={playing} />
       ))}
     </GameWrapper>
   );

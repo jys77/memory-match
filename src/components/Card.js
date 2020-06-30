@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import { mixins } from '../styles';
 import styled from 'styled-components';
-
+import { useDispatch, useSelector } from 'react-redux';
+import { popStartWarning } from '../actions';
 const CardWrapper = styled.div`
   margin: 0.2rem;
   background-color: transparent;
@@ -58,17 +59,27 @@ const CardWrapper = styled.div`
   }
 `;
 
-export const Card = ({ level, name, id }) => {
+export const Card = ({ level, name, id, playing }) => {
+  const dispatch = useDispatch();
   let cardClasses = ['card-inner'];
   const [clicked, setClicked] = useState(false);
+  const { startWarning } = useSelector((state) => state.game);
   if (clicked) {
     cardClasses = ['flip', 'card-inner'];
   } else {
     cardClasses = ['card-inner'];
   }
+
+  const clickHandler = ({ id, name }) => {
+    if (playing) {
+    } else {
+      dispatch(popStartWarning());
+    }
+  };
+
   return (
     <CardWrapper level={level}>
-      <div className={cardClasses.join(' ')} onClick={() => setClicked(!clicked)}>
+      <div className={cardClasses.join(' ')} onClick={() => clickHandler({ id, name })}>
         <div className="card-front">
           <img src={`/images/front.png`} alt="" />
         </div>

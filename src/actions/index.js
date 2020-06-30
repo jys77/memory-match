@@ -1,1 +1,8 @@
-export { setLevel, imageClicked, startGame, winGame, closeWinAlert } from './gameActions';
+export {
+  setLevel,
+  imageClicked,
+  startGame,
+  winGame,
+  closeWinAlert,
+  popStartWarning,
+} from './gameActions';

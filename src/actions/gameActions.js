@@ -1,4 +1,4 @@
-import { SET_LEVEL, CLICKED, START_GAME, WIN, ClOSE_WIN_ALERT } from '../constants';
+import { SET_LEVEL, CLICKED, START_GAME, WIN, ClOSE_WIN_ALERT, START_WARNING } from '../constants';
 
 export const setLevel = (level) => {
   return {
@@ -14,6 +14,12 @@ export const imageClicked = ({ id, name }) => {
       id,
       name,
     },
+  };
+};
+
+export const popStartWarning = () => {
+  return {
+    type: START_WARNING,
   };
 };
 

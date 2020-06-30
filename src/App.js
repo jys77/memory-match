@@ -4,6 +4,7 @@ import { Header } from './components/Header';
 import { Options } from './containers/Options';
 import { Game } from './containers/Game';
 import { mixins } from './styles';
+import { StartWarning } from './components/StartWarning';
 
 const Wrapper = styled.div`
   ${mixins.flexCenter}
@@ -12,6 +13,7 @@ const Wrapper = styled.div`
 const App = () => {
   return (
     <Wrapper>
+      <StartWarning />
       <Header />
       <Options />
       <Game />

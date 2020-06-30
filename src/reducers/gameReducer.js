@@ -1,4 +1,4 @@
-import { SET_LEVEL, CLICKED, START_GAME, WIN, ClOSE_WIN_ALERT } from '../constants';
+import { SET_LEVEL, CLICKED, START_GAME, WIN, ClOSE_WIN_ALERT, START_WARNING } from '../constants';
 import { getImages, isMatched } from '../utils';
 
 const bestEasy = localStorage.getItem('bestEasy') || 0;
@@ -14,6 +14,7 @@ const initialState = {
   playing: false,
   win: false,
   popWinAlert: false,
+  startWarning: false,
   bestEasy,
   bestMedium,
   bestHard,
@@ -72,6 +73,11 @@ export const gameReducer = (state = initialState, action) => {
         win: false,
         playing: false,
         popWinAlert: false,
+      };
+    case START_WARNING:
+      return {
+        ...state,
+        startWarning: !state.startWarning,
       };
     default:
       return state;
