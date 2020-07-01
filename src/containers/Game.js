@@ -1,8 +1,9 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import { mixins } from '../styles';
 import { useDispatch, useSelector } from 'react-redux';
 import { Card } from '../components/Card';
+import { winGame } from '../actions';
 
 const GameWrapper = styled.div`
   ${mixins.flexCenter}
@@ -23,10 +24,33 @@ const GameWrapper = styled.div`
     width: 99%;
   }
 `;
-
+let clock = null;
 export const Game = () => {
   const dispatch = useDispatch();
-  const { data, level, playing } = useSelector((state) => state.game);
+  const [time, setTime] = useState(0);
+  const { data, level, playing, flipped } = useSelector((state) => state.game);
+
+  useEffect(() => {
+    if (
+      (level === 'easy' && flipped.length === 12) ||
+      (level === 'medium' && flipped.length === 20) ||
+      (level === 'hard' && flipped.length === 40)
+    ) {
+      dispatch(winGame(level, time));
+    }
+  }, [level, flipped]);
+
+  useEffect(() => {
+    if (playing) {
+      clock = setInterval(() => {
+        setTime((t) => t + 1);
+      }, 1000);
+    } else {
+      clearInterval(clock);
+      setTime(0);
+    }
+  }, [playing]);
+
   return (
     <GameWrapper level={level}>
       {data.map((img) => (

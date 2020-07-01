@@ -34,15 +34,15 @@ export const winGame = (level, timeUsed) => {
   const bestMedium = localStorage.getItem('bestMedium') || 0;
   const bestHard = localStorage.getItem('bestHard') || 0;
   if (level === 'easy') {
-    if (timeUsed < bestEasy) {
+    if (bestEasy === 0 || timeUsed < bestEasy) {
       localStorage.setItem('bestEasy', timeUsed);
     }
   } else if (level === 'medium') {
-    if (timeUsed < bestMedium) {
+    if (bestMedium === 0 || timeUsed < bestMedium) {
       localStorage.setItem('bestMedium', timeUsed);
     }
   } else if (level === 'hard') {
-    if (timeUsed < bestHard) {
+    if (bestHard === 0 || timeUsed < bestHard) {
       localStorage.setItem('bestHard', timeUsed);
     }
   }

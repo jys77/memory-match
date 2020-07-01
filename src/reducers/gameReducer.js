@@ -57,7 +57,7 @@ export const gameReducer = (state = initialState, action) => {
         timeUsed: 0,
       };
     case WIN:
-      const { timeUsed } = action.payload;
+      const timeUsed = action.payload;
       return {
         ...state,
         timeUsed,
