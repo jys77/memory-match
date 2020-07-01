@@ -1,4 +1,12 @@
-import { SET_LEVEL, CLICKED, START_GAME, WIN, CLOSE_WIN_MODAL, START_WARNING } from '../constants';
+import {
+  SET_LEVEL,
+  CLICKED,
+  START_GAME,
+  WIN,
+  CLOSE_WIN_MODAL,
+  START_WARNING,
+  SHOW_STAT,
+} from '../constants';
 
 export const setLevel = (level) => {
   return {
@@ -56,5 +64,11 @@ export const closeWinModal = (level) => {
   return {
     type: CLOSE_WIN_MODAL,
     payload: level,
+  };
+};
+
+export const showStatModal = () => {
+  return {
+    type: SHOW_STAT,
   };
 };

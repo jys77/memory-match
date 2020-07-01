@@ -5,4 +5,5 @@ export {
   winGame,
   closeWinModal,
   popStartWarning,
+  showStatModal,
 } from './gameActions';

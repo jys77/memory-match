@@ -31,3 +31,10 @@ export const isMatched = (one, two) => {
   }
   return false;
 };
+
+export const transTime = (time) => {
+  if (time === 0) {
+    return 'N/A';
+  }
+  return `${String(Math.floor(time / 60)).padStart(2, '0')}:${String(time & 60).padStart(2, '0')}`;
+};

@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import styled from 'styled-components';
 import { mixins } from '../styles';
 import { levels } from '../constants';
-import { setLevel, startGame, closeWinModal } from '../actions';
+import { setLevel, startGame, closeWinModal, showStatModal } from '../actions';
 const OptionsWrapper = styled.div`
   display: flex;
   margin-top: 2rem;
@@ -48,6 +48,10 @@ const OptionsWrapper = styled.div`
     box-shadow: none;
     padding: 5px;
     font-size: 1.2rem;
+  }
+
+  .stat:disabled {
+    cursor: not-allowed;
   }
 `;
 
@@ -95,7 +99,9 @@ export const Options = () => {
       >
         {buttonText}
       </button>
-      <button className="stat">Statistics</button>
+      <button className="stat" disabled={playing} onClick={() => dispatch(showStatModal())}>
+        Statistics
+      </button>
     </OptionsWrapper>
   );
 };
