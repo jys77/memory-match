@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import styled from 'styled-components';
 import { mixins } from '../styles';
 import { levels } from '../constants';
-import { setLevel, startGame } from '../actions';
+import { setLevel, startGame, closeWinModal } from '../actions';
 const OptionsWrapper = styled.div`
   display: flex;
   margin-top: 2rem;
@@ -19,6 +19,9 @@ const OptionsWrapper = styled.div`
       border-radius: 10px;
       box-shadow: none;
       padding: 5px;
+      &:disabled {
+        cursor: not-allowed;
+      }
     }
     .arrow {
       position: absolute;
@@ -46,28 +49,30 @@ const OptionsWrapper = styled.div`
     padding: 5px;
     font-size: 1.2rem;
   }
-  .start:disabled {
-    cursor: not-allowed;
-  }
 `;
 
 export const Options = () => {
   const [gameLevel, setGameLevel] = useState('easy');
-  const [startClicked, setStartClicked] = useState(false);
+  const [buttonText, setButtonText] = useState('Start');
+  const { playing, level, popWinModal } = useSelector((state) => state.game);
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(setLevel(gameLevel));
   }, [gameLevel]);
 
-  const gameStart = () => {
-    if (!startClicked) {
-      dispatch(startGame());
+  useEffect(() => {
+    if (popWinModal) {
+      setButtonText('Start');
     }
+  }, [popWinModal]);
+
+  const gameStart = () => {
+    dispatch(startGame());
   };
   return (
     <OptionsWrapper>
       <div className="option">
-        <select value={gameLevel} onChange={(e) => setGameLevel(e.target.value)}>
+        <select value={gameLevel} onChange={(e) => setGameLevel(e.target.value)} disabled={playing}>
           {Object.keys(levels).map((level) => (
             <option key={level} value={level}>
               {level}
@@ -79,12 +84,16 @@ export const Options = () => {
       <button
         className="start"
         onClick={() => {
-          gameStart();
-          setStartClicked(true);
+          if (buttonText === 'Start') {
+            setButtonText('Reset');
+            gameStart();
+          } else {
+            setButtonText('Start');
+            dispatch(closeWinModal(level));
+          }
         }}
-        disabled={startClicked}
       >
-        Start
+        {buttonText}
       </button>
       <button className="stat">Statistics</button>
     </OptionsWrapper>

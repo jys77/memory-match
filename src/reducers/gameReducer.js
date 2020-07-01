@@ -68,6 +68,7 @@ export const gameReducer = (state = initialState, action) => {
     case CLOSE_WIN_MODAL:
       return {
         ...state,
+        data: getImages(action.payload),
         clicked: [],
         flipped: [],
         win: false,

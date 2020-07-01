@@ -51,13 +51,13 @@ const Wrapper = styled.div`
 
 export const Win = () => {
   const dispatch = useDispatch();
-  const { popWinModal, timeUsed } = useSelector((state) => state.game);
+  const { popWinModal, timeUsed, level } = useSelector((state) => state.game);
   return (
     <Wrapper win={popWinModal}>
       <div className="alert">
         <p>YOU WIN!</p>
         <p>Your Time Used: {timeUsed}</p>
-        <button onClick={() => dispatch(closeWinModal())}>Close</button>
+        <button onClick={() => dispatch(closeWinModal(level))}>Close</button>
       </div>
     </Wrapper>
   );

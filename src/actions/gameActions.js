@@ -52,8 +52,9 @@ export const winGame = (level, timeUsed) => {
   };
 };
 
-export const closeWinModal = () => {
+export const closeWinModal = (level) => {
   return {
     type: CLOSE_WIN_MODAL,
+    payload: level,
   };
 };
