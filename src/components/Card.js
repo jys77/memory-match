@@ -1,13 +1,14 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { mixins } from '../styles';
 import styled from 'styled-components';
 import { useDispatch, useSelector } from 'react-redux';
-import { popStartWarning } from '../actions';
+import { popStartWarning, imageClicked } from '../actions';
 const CardWrapper = styled.div`
   margin: 0.2rem;
   background-color: transparent;
   perspective: 1000px;
   padding: 2px;
+  user-select: none;
   width: ${(props) =>
     props.level === 'easy'
       ? '10rem'
@@ -61,21 +62,42 @@ const CardWrapper = styled.div`
 
 export const Card = ({ level, name, id, playing }) => {
   const dispatch = useDispatch();
-  let cardClasses = ['card-inner'];
-  const [clicked, setClicked] = useState(false);
-  const { startWarning } = useSelector((state) => state.game);
-  if (clicked) {
-    cardClasses = ['flip', 'card-inner'];
-  } else {
-    cardClasses = ['card-inner'];
-  }
+  const { flipped, clicked } = useSelector((state) => state.game);
+  const [revealed, setRevealed] = useState(false);
+  const [cardClasses, setCardClasses] = useState(['card-inner']);
 
   const clickHandler = ({ id, name }) => {
-    if (playing) {
-    } else {
+    if (!playing) {
       dispatch(popStartWarning());
+      return;
+    }
+    if (playing && !revealed) {
+      dispatch(imageClicked({ id, name }));
     }
   };
+
+  useEffect(() => {
+    if (revealed) {
+      setCardClasses(['flip', 'card-inner']);
+    } else {
+      setCardClasses(['card-inner']);
+    }
+  }, [revealed]);
+
+  const isIncluded = (cards, id, name) => {
+    if (cards.filter((card) => card.id === id && card.name === name).length > 0) {
+      return true;
+    }
+    return false;
+  };
+
+  useEffect(() => {
+    if (isIncluded(flipped, id, name) || isIncluded(clicked, id, name)) {
+      setRevealed(true);
+    } else {
+      setRevealed(false);
+    }
+  }, [flipped, clicked]);
 
   return (
     <CardWrapper level={level}>
