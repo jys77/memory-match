@@ -1,4 +1,4 @@
-import { SET_LEVEL, CLICKED, START_GAME, WIN, ClOSE_WIN_ALERT, START_WARNING } from '../constants';
+import { SET_LEVEL, CLICKED, START_GAME, WIN, CLOSE_WIN_MODAL, START_WARNING } from '../constants';
 
 export const setLevel = (level) => {
   return {
@@ -52,8 +52,8 @@ export const winGame = (level, timeUsed) => {
   };
 };
 
-export const closeWinAlert = () => {
+export const closeWinModal = () => {
   return {
-    type: ClOSE_WIN_ALERT,
+    type: CLOSE_WIN_MODAL,
   };
 };

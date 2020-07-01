@@ -1,4 +1,4 @@
-import { SET_LEVEL, CLICKED, START_GAME, WIN, ClOSE_WIN_ALERT, START_WARNING } from '../constants';
+import { SET_LEVEL, CLICKED, START_GAME, WIN, CLOSE_WIN_MODAL, START_WARNING } from '../constants';
 import { getImages, isMatched } from '../utils';
 
 const bestEasy = localStorage.getItem('bestEasy') || 0;
@@ -13,7 +13,7 @@ const initialState = {
   timeUsed: 0,
   playing: false,
   win: false,
-  popWinAlert: false,
+  popWinModal: false,
   startWarning: false,
   bestEasy,
   bestMedium,
@@ -53,7 +53,7 @@ export const gameReducer = (state = initialState, action) => {
         flipped: [],
         playing: true,
         win: false,
-        popWinAlert: false,
+        popWinModal: false,
         timeUsed: 0,
       };
     case WIN:
@@ -63,16 +63,16 @@ export const gameReducer = (state = initialState, action) => {
         timeUsed,
         win: true,
         playing: false,
-        popWinAlert: true,
+        popWinModal: true,
       };
-    case ClOSE_WIN_ALERT:
+    case CLOSE_WIN_MODAL:
       return {
         ...state,
         clicked: [],
         flipped: [],
         win: false,
         playing: false,
-        popWinAlert: false,
+        popWinModal: false,
       };
     case START_WARNING:
       return {

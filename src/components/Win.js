@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import { mixins } from '../styles';
 import { useSelector, useDispatch } from 'react-redux';
-import { closeWinAlert } from '../actions';
+import { closeWinModal } from '../actions';
 const Wrapper = styled.div`
   position: fixed;
   top: 0;
@@ -13,7 +13,7 @@ const Wrapper = styled.div`
   height: 100%;
   background-color: rgba(0, 0, 0, 0.3);
   z-index: 100;
-  display: ${(props) => (!props.alert ? 'none' : '')};
+  display: ${(props) => (!props.win ? 'none' : '')};
   .alert {
     ${mixins.flexCenter}
     flex-flow: column;
@@ -49,15 +49,15 @@ const Wrapper = styled.div`
   }
 `;
 
-export const WinAlert = () => {
+export const Win = () => {
   const dispatch = useDispatch();
-  const { popWinAlert, timeUsed } = useSelector((state) => state.game);
+  const { popWinModal, timeUsed } = useSelector((state) => state.game);
   return (
-    <Wrapper alert={popWinAlert}>
+    <Wrapper win={popWinModal}>
       <div className="alert">
         <p>YOU WIN!</p>
         <p>Your Time Used: {timeUsed}</p>
-        <button onClick={() => dispatch(closeWinAlert())}>Close</button>
+        <button onClick={() => dispatch(closeWinModal())}>Close</button>
       </div>
     </Wrapper>
   );

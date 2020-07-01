@@ -3,6 +3,6 @@ export {
   imageClicked,
   startGame,
   winGame,
-  closeWinAlert,
+  closeWinModal,
   popStartWarning,
 } from './gameActions';
