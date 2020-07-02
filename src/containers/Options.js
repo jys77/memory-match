@@ -7,6 +7,7 @@ import { setLevel, startGame, closeWinModal, showStatModal } from '../actions';
 const OptionsWrapper = styled.div`
   display: flex;
   margin-top: 2rem;
+  user-select: none;
   .option {
     position: relative;
     select {

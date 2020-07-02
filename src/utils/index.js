@@ -38,3 +38,33 @@ export const transTime = (time) => {
   }
   return `${String(Math.floor(time / 60)).padStart(2, '0')}:${String(time & 60).padStart(2, '0')}`;
 };
+
+export const smoothScrollDownToRef = (ref) => {
+  const goToRef = () => {
+    let currentPosition = document.documentElement.scrollTop || document.body.scrollTop;
+    currentPosition += 3;
+    if (currentPosition < ref.current.offsetTop - 100) {
+      window.scrollTo(0, currentPosition);
+    } else {
+      window.scrollTo(0, ref.current.offsetTop - 100);
+      clearInterval(timer);
+      timer = null;
+    }
+  };
+  let timer = setInterval(goToRef, 1);
+};
+
+export const toTop = () => {
+  const gotoTop = () => {
+    let currentPosition = document.documentElement.scrollTop || document.body.scrollTop;
+    currentPosition -= 3;
+    if (currentPosition > 0) {
+      window.scrollTo(0, currentPosition);
+    } else {
+      window.scrollTo(0, 0);
+      clearInterval(timer);
+      timer = null;
+    }
+  };
+  let timer = setInterval(gotoTop, 1);
+};

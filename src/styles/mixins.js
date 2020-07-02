@@ -59,7 +59,7 @@ export const mixins = {
     border-radius: 10px;
     background-color: #fff;
     color: #6dd5ed;
-    transition: transform 0.2s;
+    transition: transform 0.2s ease-in-out;
     &:hover {
       transform: scale(1.1);
     }

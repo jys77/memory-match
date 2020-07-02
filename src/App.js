@@ -7,6 +7,7 @@ import { mixins } from './styles';
 import { StartWarning } from './components/StartWarning';
 import { Win } from './components/Win';
 import { Statistics } from './components/Statistics';
+import { Footer } from './components/Footer';
 
 const Wrapper = styled.div`
   ${mixins.flexCenter}
@@ -21,6 +22,7 @@ const App = () => {
       <Header />
       <Options />
       <Game />
+      <Footer />
     </Wrapper>
   );
 };

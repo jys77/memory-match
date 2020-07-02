@@ -3,6 +3,7 @@ import { mixins } from '../styles';
 import styled from 'styled-components';
 import { useDispatch, useSelector } from 'react-redux';
 import { popStartWarning, imageClicked } from '../actions';
+import { toTop } from '../utils';
 const CardWrapper = styled.div`
   margin: 0.2rem;
   background-color: transparent;
@@ -68,6 +69,7 @@ export const Card = ({ level, name, id, playing }) => {
 
   const clickHandler = ({ id, name }) => {
     if (!playing) {
+      toTop();
       dispatch(popStartWarning());
       return;
     }
