@@ -1,7 +1,7 @@
 {
-  "name": "react-memory-game",
+  "name": "memory-match",
   "version": "1.0.0",
-  "description": "",
+  "description": "A memory game to match front-end tech logos.",
   "main": "index.js",
   "scripts": {
     "start": "webpack",
@@ -9,8 +9,12 @@
     "dev": "webpack-dev-server",
     "lint": "eslint src/**/*.js"
   },
-  "author": "",
-  "license": "ISC",
+  "author": "jys77",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/jys77/memory-match/issues"
+  },
+  "homepage": "https://github.com/jys77/memory-match#readme",
   "devDependencies": {
     "@babel/core": "^7.10.3",
     "@babel/preset-env": "^7.10.3",
