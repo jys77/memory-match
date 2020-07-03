@@ -16,16 +16,28 @@ const OptionsWrapper = styled.div`
       font-size: 1.2rem;
       width: 100px;
       height: 38px;
-      border: 3px solid #2193b0;
-      background-color: #fff;
+      color: white;
+      outline: none;
+      border: 2px solid transparent;
+      background-color: #ff3333;
       border-radius: 10px;
-      box-shadow: none;
+      box-shadow: 3px 5px 0 rgba(0, 0, 0, 0.3), 3px 5px 0 #ff3333, 8px 7px 0 2px rgba(0, 0, 0, 0.24);
+      transition: box-shadow 0.25s ease-in 0s, transform 0.25s ease-in 0s,
+        background 0.25s ease-in 0s, color 0.25s ease-in 0s;
       padding: 5px;
       &:disabled {
         cursor: not-allowed;
+        background-color: #bdc3c7;
+        box-shadow: 3px 5px 0 rgba(0, 0, 0, 0.3), 3px 5px 0 #3e5163,
+          8px 7px 0 2px rgba(0, 0, 0, 0.24);
+      }
+      &:focus:active {
+        box-shadow: 0 0 0 rgba(0, 0, 0, 0.3);
+        transform: translate(3px, 5px);
       }
     }
     .arrow {
+      color: white;
       position: absolute;
       right: 0.4rem;
       top: 55%;
@@ -42,18 +54,28 @@ const OptionsWrapper = styled.div`
   .start {
     ${mixins.flexCenter}
     cursor: pointer;
+    color: white;
     width: 100px;
     height: 38px;
-    border: 3px solid #2193b0;
-    background-color: #fff;
+    outline: none;
+    border: 2px solid transparent;
+    background-color: #ff3333;
     border-radius: 10px;
-    box-shadow: none;
+    box-shadow: 3px 5px 0 rgba(0, 0, 0, 0.3), 3px 5px 0 #ff3333, 8px 7px 0 2px rgba(0, 0, 0, 0.24);
     padding: 5px;
     font-size: 1.2rem;
+    transition: box-shadow 0.25s ease-in 0s, transform 0.25s ease-in 0s, background 0.25s ease-in 0s,
+      color 0.25s ease-in 0s;
+    &:focus:active {
+      box-shadow: 0 0 0 rgba(0, 0, 0, 0.3);
+      transform: translate(3px, 5px);
+    }
   }
 
   .stat:disabled {
     cursor: not-allowed;
+    background-color: #bdc3c7;
+    box-shadow: 3px 5px 0 rgba(0, 0, 0, 0.3), 3px 5px 0 #3e5163, 8px 7px 0 2px rgba(0, 0, 0, 0.24);
   }
 `;
 

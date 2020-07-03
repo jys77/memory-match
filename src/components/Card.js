@@ -30,6 +30,11 @@ const CardWrapper = styled.div`
     width: 5rem;
     height: 5rem;
   }
+  transition: transform 0.2s ease-in-out;
+  &:hover {
+    transform: scale(1.02);
+  }
+  ${(props) => (props.matched ? mixins.match : '')}
   .card-inner {
     cursor: pointer;
     position: relative;
@@ -102,7 +107,7 @@ export const Card = ({ level, name, id, playing }) => {
   }, [flipped, clicked]);
 
   return (
-    <CardWrapper level={level}>
+    <CardWrapper level={level} matched={isIncluded(flipped, id, name)}>
       <div className={cardClasses.join(' ')} onClick={() => clickHandler({ id, name })}>
         <div className="card-front">
           <img src={`/images/front.png`} alt="" />

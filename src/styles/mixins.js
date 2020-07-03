@@ -1,4 +1,5 @@
 import { css } from 'styled-components';
+import { animations } from './animations';
 
 export const mixins = {
   flexCenter: css`
@@ -64,5 +65,10 @@ export const mixins = {
     &:hover {
       transform: scale(1.1);
     }
+  `,
+  match: css`
+    animation: ${animations.matchShake} 0.5s cubic-bezier(0.36, 0.07, 0.19, 0.97) both;
+    animation-delay: 0.5s;
+    backface-visibility: hidden;
   `,
 };
