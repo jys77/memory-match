@@ -39,19 +39,24 @@ export const transTime = (time) => {
   return `${String(Math.floor(time / 60)).padStart(2, '0')}:${String(time & 60).padStart(2, '0')}`;
 };
 
-export const smoothScrollDownToRef = (ref) => {
-  const goToRef = () => {
+export const smoothScrollDownToId = (id) => {
+  const scrollDown = () => {
+    const target = document.getElementById(id);
     let currentPosition = document.documentElement.scrollTop || document.body.scrollTop;
     currentPosition += 3;
-    if (currentPosition < ref.current.offsetTop - 100) {
+    if (currentPosition < target.offsetTop - 100) {
       window.scrollTo(0, currentPosition);
     } else {
-      window.scrollTo(0, ref.current.offsetTop - 100);
+      window.scrollTo(0, target.offsetTop - 100);
       clearInterval(timer);
       timer = null;
     }
   };
-  let timer = setInterval(goToRef, 1);
+  let timer = setInterval(scrollDown, 1);
+  setTimeout(() => {
+    clearInterval(timer);
+    timer = null;
+  }, 500);
 };
 
 export const toTop = () => {

@@ -1,16 +1,15 @@
-import React, { useEffect, useState, useRef } from 'react';
+import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import { mixins } from '../styles';
 import { useDispatch, useSelector } from 'react-redux';
 import { Card } from '../components/Card';
 import { winGame } from '../actions';
-import { smoothScrollDownToRef } from '../utils';
 
 const GameWrapper = styled.div`
   ${mixins.flexCenter}
   padding: 0.5rem;
   flex-wrap: wrap;
-  margin: 5rem auto;
+  margin: 2rem auto;
   margin-bottom: 10rem;
   width: ${(props) =>
     props.level === 'easy'
@@ -30,9 +29,7 @@ let clock = null;
 export const Game = () => {
   const dispatch = useDispatch();
   const [time, setTime] = useState(0);
-  const [scrolled, setScrolled] = useState(false);
   const { data, level, playing, flipped } = useSelector((state) => state.game);
-  const ref = useRef();
   useEffect(() => {
     if (
       (level === 'easy' && flipped.length === 12) ||
@@ -54,18 +51,9 @@ export const Game = () => {
     }
   }, [playing]);
 
-  useEffect(() => {
-    if (playing && !scrolled) {
-      setScrolled(true);
-      smoothScrollDownToRef(ref);
-    } else if (!playing) {
-      setScrolled(false);
-    }
-  }, [playing, scrolled]);
-
   return (
     <GameWrapper level={level}>
-      <div ref={ref}></div>
+      <div id="game-board"></div>
       {data.map((img) => (
         <Card key={img.id} level={level} name={img.name} id={img.id} playing={playing} />
       ))}

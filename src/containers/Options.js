@@ -4,6 +4,7 @@ import styled from 'styled-components';
 import { mixins } from '../styles';
 import { levels } from '../constants';
 import { setLevel, startGame, closeWinModal, showStatModal } from '../actions';
+import { smoothScrollDownToId } from '../utils';
 const OptionsWrapper = styled.div`
   display: flex;
   margin-top: 2rem;
@@ -72,6 +73,7 @@ export const Options = () => {
   }, [popWinModal]);
 
   const gameStart = () => {
+    smoothScrollDownToId('game-board');
     dispatch(startGame());
   };
   return (
