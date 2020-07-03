@@ -1,7 +1,7 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 module.exports = {
-  mode: 'development',
+  mode: 'production',
   entry: './src/index.js',
   output: {
     path: path.resolve(__dirname, 'public'),
@@ -21,10 +21,5 @@ module.exports = {
         loader: 'babel-loader',
       },
     ],
-  },
-  devtool: 'cheap-module-eval-source-map',
-  devServer: {
-    contentBase: path.resolve(__dirname, 'public'),
-    host: '0.0.0.0',
   },
 };
