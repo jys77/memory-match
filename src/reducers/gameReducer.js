@@ -37,7 +37,7 @@ export const gameReducer = (state = initialState, action) => {
         level: action.payload,
         data: getImages(action.payload),
       };
-    case CLICKED:
+    case CLICKED: {
       const { id, name } = action.payload;
       const clicked = state.clicked;
       const flipped = state.flipped;
@@ -55,6 +55,7 @@ export const gameReducer = (state = initialState, action) => {
         clicked: [...clicked],
         flipped: [...flipped],
       };
+    }
     case START_GAME:
       return {
         ...state,
@@ -66,10 +67,9 @@ export const gameReducer = (state = initialState, action) => {
         timeUsed: 0,
       };
     case WIN:
-      const timeUsed = action.payload;
       return {
         ...state,
-        timeUsed,
+        timeUsed: action.payload,
         win: true,
         playing: false,
         popWinModal: true,

@@ -33,7 +33,7 @@ export const Footer = () => (
   <Wrapper>
     <div>
       Welcome to star or fork it on{' '}
-      <a href="https://github.com/jys77" target="_blank">
+      <a href="https://github.com/jys77/memory-match" rel="noreferrer" target="_blank">
         GitHub
       </a>
       , and feel free to create issues or pull requests.

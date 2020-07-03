@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import PropTypes from 'prop-types';
 import { mixins } from '../styles';
 import styled from 'styled-components';
 import { useDispatch, useSelector } from 'react-redux';
@@ -118,4 +119,11 @@ export const Card = ({ level, name, id, playing }) => {
       </div>
     </CardWrapper>
   );
+};
+
+Card.propTypes = {
+  level: PropTypes.string,
+  name: PropTypes.string,
+  id: PropTypes.number,
+  playing: PropTypes.bool,
 };
