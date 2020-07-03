@@ -6,10 +6,13 @@ import { showStatModal } from '../actions';
 import { transTime } from '../utils';
 
 const Wrapper = styled.div`
-  ${mixins.overlay}
-  display: ${(props) => (!props.showStat ? 'none' : '')};
+  .overlay {
+    ${mixins.overlay}
+    display: ${(props) => (!props.showStat ? 'none' : '')};
+  }
   .modal {
     ${mixins.modalWindow('20rem', '15rem')}
+    display: ${(props) => (!props.showStat ? 'none' : '')};
       p.title {
           font-size: 1.5rem;
           font-weight: 700;
@@ -38,6 +41,7 @@ export const Statistics = () => {
   const bestHard = localStorage.getItem('bestHard') || 0;
   return (
     <Wrapper showStat={showStat}>
+      <div className="overlay" onClick={() => dispatch(showStatModal())} />
       <div className="modal">
         <p className="title">Best Time</p>
         <div className="stat">

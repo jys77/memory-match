@@ -5,10 +5,13 @@ import { useDispatch, useSelector } from 'react-redux';
 import { popStartWarning } from '../actions';
 
 const Wrapper = styled.div`
-  ${mixins.overlay}
-  display: ${(props) => (props.startWarning === false ? 'none' : '')};
+  .overlay {
+    ${mixins.overlay}
+    display: ${(props) => (props.startWarning === false ? 'none' : '')};
+  }
   .warning {
     ${mixins.modalWindow('20rem', '10rem')}
+    display: ${(props) => (props.startWarning === false ? 'none' : '')};
     p {
       font-size: 1rem;
       font-weight: 500;
@@ -27,6 +30,7 @@ export const StartWarning = () => {
   const { startWarning } = useSelector((state) => state.game);
   return (
     <Wrapper startWarning={startWarning}>
+      <div className="overlay" onClick={() => dispatch(popStartWarning())} />
       <div className="warning">
         <p>
           Please click the <span>Start</span> button above!

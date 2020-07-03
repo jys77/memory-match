@@ -5,10 +5,13 @@ import { useSelector, useDispatch } from 'react-redux';
 import { closeWinModal } from '../actions';
 import { transTime } from '../utils';
 const Wrapper = styled.div`
-  ${mixins.overlay}
+  .overlay {
+    ${mixins.overlay}
   display: ${(props) => (!props.win ? 'none' : '')};
+  }
   .alert {
     ${mixins.modalWindow('20rem', '15rem')}
+    display: ${(props) => (!props.win ? 'none' : '')};
     p:nth-child(1) {
       font-size: 2rem;
       font-weight: 700;
@@ -29,6 +32,7 @@ export const Win = () => {
   const { popWinModal, timeUsed, level } = useSelector((state) => state.game);
   return (
     <Wrapper win={popWinModal}>
+      <div className="overlay" onClick={() => dispatch(closeWinModal(level))} />
       <div className="alert">
         <p>YOU WIN!</p>
         <p>Your time: {transTime(timeUsed)}</p>

@@ -38,7 +38,7 @@ export const mixins = {
     justify-content: center;
     align-items: center;
     flex-flow: column;
-    position: relative;
+    position: fixed;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
@@ -47,6 +47,7 @@ export const mixins = {
     border: 2px solid #6dd5ed;
     background-color: #fff;
     border-radius: 10px;
+    z-index: 101;
   `,
   modalButton: css`
     font-size: 1rem;
