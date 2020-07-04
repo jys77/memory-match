@@ -7,3 +7,5 @@ export {
   popStartWarning,
   showStatModal,
 } from './gameActions';
+
+export { changeLang } from './langActions';
