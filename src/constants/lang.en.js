@@ -6,6 +6,7 @@ export default {
     hard: 'Hard',
   },
   start: 'Start',
+  reset: 'Reset',
   statistics: 'Statistics',
   best_time: 'Best Time',
   close: 'Close',

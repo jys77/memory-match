@@ -8,6 +8,7 @@ import { StartWarning } from './components/StartWarning';
 import { Win } from './components/Win';
 import { Statistics } from './components/Statistics';
 import { Footer } from './components/Footer';
+import { Lang } from './components/Lang';
 
 const Wrapper = styled.div`
   ${mixins.flexCenter}
@@ -16,6 +17,7 @@ const Wrapper = styled.div`
 const App = () => {
   return (
     <Wrapper>
+      <Lang />
       <StartWarning />
       <Win />
       <Statistics />

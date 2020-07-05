@@ -81,7 +81,8 @@ const OptionsWrapper = styled.div`
 
 export const Options = () => {
   const [gameLevel, setGameLevel] = useState('easy');
-  const [buttonText, setButtonText] = useState('Start');
+  const { lang } = useSelector((state) => state.lang);
+  const [buttonText, setButtonText] = useState(lang.start);
   const { playing, level, popWinModal } = useSelector((state) => state.game);
   const dispatch = useDispatch();
   useEffect(() => {
@@ -90,9 +91,17 @@ export const Options = () => {
 
   useEffect(() => {
     if (popWinModal) {
-      setButtonText('Start');
+      setButtonText(lang.start);
     }
   }, [popWinModal]);
+
+  useEffect(() => {
+    if (!playing) {
+      setButtonText(lang.start);
+    } else {
+      setButtonText(lang.reset);
+    }
+  }, [playing, lang]);
 
   const gameStart = () => {
     smoothScrollDownToId('game-board');
@@ -104,7 +113,7 @@ export const Options = () => {
         <select value={gameLevel} onChange={(e) => setGameLevel(e.target.value)} disabled={playing}>
           {Object.keys(levels).map((level) => (
             <option key={level} value={level}>
-              {level}
+              {lang.levels[level]}
             </option>
           ))}
         </select>
@@ -113,11 +122,11 @@ export const Options = () => {
       <button
         className="start"
         onClick={() => {
-          if (buttonText === 'Start') {
-            setButtonText('Reset');
+          if (buttonText === lang.start) {
+            setButtonText(lang.reset);
             gameStart();
           } else {
-            setButtonText('Start');
+            setButtonText(lang.start);
             dispatch(closeWinModal(level));
           }
         }}
@@ -125,7 +134,7 @@ export const Options = () => {
         {buttonText}
       </button>
       <button className="stat" disabled={playing} onClick={() => dispatch(showStatModal())}>
-        Statistics
+        {lang.statistics}
       </button>
     </OptionsWrapper>
   );

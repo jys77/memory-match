@@ -30,13 +30,16 @@ const Wrapper = styled.div`
 export const Win = () => {
   const dispatch = useDispatch();
   const { popWinModal, timeUsed, level } = useSelector((state) => state.game);
+  const { lang } = useSelector((state) => state.lang);
   return (
     <Wrapper win={popWinModal}>
       <div className="overlay" onClick={() => dispatch(closeWinModal(level))} />
       <div className="alert">
-        <p>YOU WIN!</p>
-        <p>Your time: {transTime(timeUsed)}</p>
-        <button onClick={() => dispatch(closeWinModal(level))}>Close</button>
+        <p>{lang.you_win}</p>
+        <p>
+          {lang.your_time}: {transTime(timeUsed)}
+        </p>
+        <button onClick={() => dispatch(closeWinModal(level))}>{lang.close}</button>
       </div>
     </Wrapper>
   );

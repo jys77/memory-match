@@ -1,6 +1,10 @@
 import { Langs, CHANGE_LANG } from '../constants';
 const lang = localStorage.getItem('lang') || navigator.language.slice(0, 2);
 
+if (lang !== 'en' && lang !== 'zh') {
+  lang = 'en';
+}
+
 const initialState = {
   locale: lang,
   lang: Langs[lang].data,

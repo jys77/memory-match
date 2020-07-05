@@ -28,14 +28,13 @@ const Wrapper = styled.div`
 export const StartWarning = () => {
   const dispatch = useDispatch();
   const { startWarning } = useSelector((state) => state.game);
+  const { lang } = useSelector((state) => state.lang);
   return (
     <Wrapper startWarning={startWarning}>
       <div className="overlay" onClick={() => dispatch(popStartWarning())} />
       <div className="warning">
-        <p>
-          Please click the <span>Start</span> button above!
-        </p>
-        <button onClick={() => dispatch(popStartWarning())}>Close</button>
+        <p>{lang.warning}</p>
+        <button onClick={() => dispatch(popStartWarning())}>{lang.close}</button>
       </div>
     </Wrapper>
   );

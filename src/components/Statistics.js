@@ -36,6 +36,7 @@ const Wrapper = styled.div`
 export const Statistics = () => {
   const dispatch = useDispatch();
   const { showStat } = useSelector((state) => state.game);
+  const { lang } = useSelector((state) => state.lang);
   const bestEasy = localStorage.getItem('bestEasy') || 0;
   const bestMedium = localStorage.getItem('bestMedium') || 0;
   const bestHard = localStorage.getItem('bestHard') || 0;
@@ -43,22 +44,22 @@ export const Statistics = () => {
     <Wrapper showStat={showStat}>
       <div className="overlay" onClick={() => dispatch(showStatModal())} />
       <div className="modal">
-        <p className="title">Best Time</p>
+        <p className="title">{lang.best_time}</p>
         <div className="stat">
           <p>
-            <span>Easy:</span>
+            <span>{lang.levels.easy}:</span>
             <span>{transTime(bestEasy)}</span>
           </p>
           <p>
-            <span>Medium:</span>
+            <span>{lang.levels.medium}:</span>
             <span>{transTime(bestMedium)}</span>
           </p>
           <p>
-            <span>Hard:</span>
+            <span>{lang.levels.hard}:</span>
             <span>{transTime(bestHard)}</span>
           </p>
         </div>
-        <button onClick={() => dispatch(showStatModal())}>Close</button>
+        <button onClick={() => dispatch(showStatModal())}>{lang.close}</button>
       </div>
     </Wrapper>
   );

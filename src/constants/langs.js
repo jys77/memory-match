@@ -7,7 +7,7 @@ export const Langs = {
     data: EN,
   },
   zh: {
-    title: 'Chinese',
+    title: '中文',
     data: ZH,
   },
 };
