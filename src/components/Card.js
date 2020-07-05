@@ -57,13 +57,19 @@ const CardWrapper = styled.div`
     height: 100%;
     -webkit-backface-visibility: hidden;
     backface-visibility: hidden;
-    background-color: #fff;
+  }
+  .card-front {
+    background: #6dd5ed;
     img {
-      width: 90%;
+      width: 65%;
     }
   }
   .card-back {
+    background-color: #fff;
     transform: rotateY(180deg);
+    img {
+      width: 90%;
+    }
   }
 `;
 
