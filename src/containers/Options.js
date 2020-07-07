@@ -107,6 +107,15 @@ export const Options = () => {
     smoothScrollDownToId('game-board');
     dispatch(startGame());
   };
+
+  const buttonClickHandler = () => {
+    if (buttonText === lang.start) {
+      gameStart();
+    } else {
+      dispatch(closeWinModal(level));
+    }
+  };
+
   return (
     <OptionsWrapper>
       <div className="option">
@@ -119,18 +128,7 @@ export const Options = () => {
         </select>
         <i className="arrow">&#9660;</i>
       </div>
-      <button
-        className="start"
-        onClick={() => {
-          if (buttonText === lang.start) {
-            setButtonText(lang.reset);
-            gameStart();
-          } else {
-            setButtonText(lang.start);
-            dispatch(closeWinModal(level));
-          }
-        }}
-      >
+      <button className="start" onClick={buttonClickHandler}>
         {buttonText}
       </button>
       <button className="stat" disabled={playing} onClick={() => dispatch(showStatModal())}>
